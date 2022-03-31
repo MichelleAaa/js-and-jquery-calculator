@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./styles.css" />
+
+    <title>Calculator</title>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <table class="table">
+        <thead class="">
+            <tr>
+                <th colspan="4">Calculator</th>
+            </tr>
+            <tr>
+                <th id="screen" colspan="4"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-id="%">&percnt;</td>
+                <td data-id="CE">CE</td>
+                <td data-id="C">C</td>
+                <td data-id="backspace">&#9003;</td>
+            </tr>
+            <tr>
+                <td data-id="+/-">+/-</td>
+                <td data-id="square-root">&#8730;</td>
+                <td data-id="squared">x&sup2;</td>
+                <td class="operation" data-id="/">&#247;</td>
+            </tr>
+            <tr>
+                <td class="number" data-id='7'>7</td>
+                <td class="number" data-id="8">8</td>
+                <td class="number" data-id="9">9</td>
+                <td class="operation" data-id="*">&times;</td>
+            </tr>
+            <tr>
+                <td class="number" data-id="4">4</td>
+                <td class="number" data-id="5">5</td>
+                <td class="number" data-id="6">6</td>
+                <td class="operation" data-id="-">&minus;</td>
+            </tr>
+            <tr>
+                <td class="number" data-id="1">1</td>
+                <td class="number" data-id="2">2</td>
+                <td class="number" data-id="3">3</td>
+                <td class="operation" data-id="+">+</td>
+            </tr>
+            <tr>
+                <td data-id=".">.</td>
+                <td class="number" data-id="0">0</td>
+                <td data-id="=" colspan="2">=</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
