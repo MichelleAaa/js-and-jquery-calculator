@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="./styles.css" />
 
@@ -19,23 +19,34 @@
     <table class="table">
         <thead class="">
             <tr>
-                <th colspan="4">Calculator</th>
-            </tr>
-            <tr>
-                <th id="screen" colspan="4"></th>
+                <th colspan="3">Standard Calculator</th>
+                <th class="history">&#10227;</th>
+            <!-- </tr>
+            <tr> -->
+                <!-- <th id="prev-screen" colspan="4"></th> -->
+            <!-- </tr>
+            <tr> -->
+                <!-- <th id="screen" colspan="4"></th> -->
             </tr>
         </thead>
-        <tbody>
+
+        <tbody id="originalTBody">
             <tr>
-                <td data-id="%">&percnt;</td>
+                <td id="prev-screen" colspan="4"></td>
+            </tr>
+            <tr>
+                <td id="screen" colspan="4"></td>
+            </tr>
+            <tr>
+                <td data-id="percentage">&percnt;</td>
                 <td data-id="CE">CE</td>
                 <td data-id="C">C</td>
                 <td data-id="backspace">&#9003;</td>
             </tr>
             <tr>
-                <td data-id="+/-">+/-</td>
+                <td data-id="1/x">1/<em>x</em></td>
+                <td data-id="squared"><em>x</em>&sup2;</td>
                 <td data-id="square-root">&#8730;</td>
-                <td data-id="squared">x&sup2;</td>
                 <td class="operation" data-id="/">&#247;</td>
             </tr>
             <tr>
@@ -57,9 +68,10 @@
                 <td class="operation" data-id="+">+</td>
             </tr>
             <tr>
-                <td data-id=".">.</td>
+                <td data-id="+/-">+/-</td>
                 <td class="number" data-id="0">0</td>
-                <td data-id="=" colspan="2">=</td>
+                <td data-id=".">.</td>
+                <td data-id="=">=</td>
             </tr>
         </tbody>
     </table>
