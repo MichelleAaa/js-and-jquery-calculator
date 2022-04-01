@@ -7,7 +7,6 @@
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     color: #ffffff;
-    /* overflow: visible; */
 }
 
 .table {
@@ -16,20 +15,14 @@
     padding: 1.7px;
     text-align: left;
     padding-left: 2px;
-    /* overflow: visible; */
-    overflow-x: auto;
-  overflow-y: auto;
-  position: relative;
+    position: relative;
+    height: 472.87px;
+    width: 318.35px;
+    overflow: auto;
+    display: block;
 }
 
-.table-overlay {
-    /* background-color: red; */
-    margin-right: 0px;
-    padding-right: 0px;
-    /* padding-right: 3px; */
-}
-
-.history {
+.history, .close {
     text-align: right;
     padding: 6px;
     font-size: 1.3rem;
@@ -123,16 +116,23 @@ td[data-id='=']:hover {
     background-color: #94b6be;
 }
 
+tr .prev-screen {
+    /* position: relative; */
+}
+
 .prev-screen, .screen {
+    /* position: absolute; */
     text-align: right;
-    width: 353px;
+    width: 300px;
     background-color: #202020;
 }
+
 
 .prev-screen {
     color: #a6a6a6;
     font-size: 1.3rem;
     vertical-align: bottom;
+    background-color: transparent;
 }
 
 .screen {
@@ -146,3 +146,40 @@ td[data-id='=']:hover {
     width: 353px;
     background-color: #202020;
 }
+
+tbody {
+    /* max-height: 300px; */
+    /* overflow: auto;
+    display: block; */
+} 
+
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(187, 184, 184); 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: gray; 
+}
+
+.delete-icon {
+    background-color: transparent;
+    text-align: right;
+}
+

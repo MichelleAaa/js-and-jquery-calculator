@@ -159,8 +159,14 @@ $(function() {
     });
     
     function renderScreen(){
-        if (!firstNum) $('#screen').text(`0`);
-        if (firstNum && !operation) $('#screen').text(`${firstNum}`);
+        if (!firstNum) {
+            $('#screen').text(`0`);
+            $('#prev-screen').text(``);
+        }
+        if (firstNum && !operation) {
+            $('#screen').text(`${firstNum}`);
+            $('#prev-screen').text(``);
+        }
         if (firstNum && operation) {
             $('#prev-screen').text(`${firstNum} ${operation}`);
             $('#screen').text(`${firstNum}`);
@@ -175,52 +181,55 @@ $(function() {
         }
     }
 
-    $(".history").on('click', function(e) {
-        let newBody = $('tbody');
-        newBody.addClass('table-overlay');
-        //CONSIDER IF THIS SHOULD BE INCLUDED OR NOT:
-        newBody.html(`
-            <tr>
-                <td id="prev-screen" colspan="4"></td>
-            </tr>
-            <tr>
-                <td id="screen" colspan="4"></td>
-            </tr>
+    $(".history").on('click', openHistory);
 
-        `)
-        // $("#originalTBody").replaceWith(newBody);
-        $("#originalTBody").remove();
-        $('table').append(newBody);
+    function openHistory(e) {
+        //Create close button for the top
+        let closeBtn = $("<th class='close'>&#10227;</th>");
+        
+        $('.history').replaceWith(closeBtn);
+        $(closeBtn).on('click', returnBtn); 
+
+        $(".main-body-item").css("max-height", "0");
+        $(".main-body-item").hide();
 
         if(history.length > 0){
         //loop over the array of objects. generate tr/td for each. 
-        console.log(history);
-        for (let i = 0; i < history.length; i++){
-            let div = $("<div>");
-            div.html(`
-                <tr>
-                    <td class="prev-screen" colspan="4">${`${history[i].firstNum} ${history[i].operation} ${history[i].secondNum} =`}</td>
-                </tr>
-                <tr>
-                    <td class="screen" colspan="4">${history[i].result}</td>
-                </tr>
-            `);
-            $(".table-overlay").prepend(div);
-        };
+            console.log(history);
+            for (let i = 0; i < history.length; i++){
+                let historyItemPrev = $("<tr class='temp-history'>");
+                historyItemPrev.html(`
+                        <td class="prev-screen" colspan="4">${`${history[i].firstNum} ${history[i].operation} ${history[i].secondNum} =`}</td>
+                `);
 
-        // .innerhtml
-        //prepend element to the newBody.
+                let historyItem = $("<tr class='temp-history'>");
+                historyItem.html(`
+                        <td class="screen" colspan="4">${history[i].result}</td>
+                `);
+
+                $('tbody').prepend(historyItem);
+                $('tbody').prepend(historyItemPrev);
+            };
+            //Create delete button at the bottom
+                let deleteBtn = $(`
+                    <tr class='delete'> 
+                        <td class="delete-icon" colspan="4">&#128465;</td>
+                        </tr>
+                    `);
+                
+                $('tbody').append(deleteBtn);
+                $(deleteBtn).on('click', deleteHistory);
         } else {
-            let div = $("<div>");
-            div.html(`
-                <tr>
+            let noHistory = $("<tr class='temp-history'>");
+            noHistory.html(`
                     <td class="no-history" colspan="4">There's no history yet</td>
-                </tr>
             `);
-            $(".table-overlay").prepend(div);
+            $('tbody').append(noHistory);
         }
+         
 
-    });
+        renderScreen();
+    };
 
     function storeHistory(){
         //create a new object to hold the details
@@ -233,10 +242,25 @@ $(function() {
         history.push(prevEvent);
     };
 
-    //delete button for history, do I want to include the first/second numbers at the top? how to close out of the table-overlay (click outside or button? etc.
+    function returnBtn(e){
+        $(".temp-history").remove();
+        $(".delete").remove();
+        $(".main-body-item").show();
+        // $("#originalTBody").show();
 
-    // function deleteHistory(){
 
-    // }
+        let history = $('<th class="history">&#10227;</th>');
+        $('.close').replaceWith(history);
+        $(".history").on('click', openHistory);
+
+        renderScreen();
+    };
+    
+    function deleteHistory(){
+        history = [];
+        $(".temp-history").remove();
+        $(".delete").remove();
+        openHistory();
+    }
 
 });
