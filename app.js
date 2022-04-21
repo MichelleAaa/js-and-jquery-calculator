@@ -184,14 +184,16 @@ $(function() {
     $(".history").on('click', openHistory);
 
     function openHistory(e) {
+
+        $('.overlay').addClass('overlay-active');
+        $('.head-history').addClass('thead-history');
+        // $('tbody').addClass('scroll');
+
         //Create close button for the top
-        let closeBtn = $("<th class='close'>&#10227;</th>");
+        let closeBtn = $("<th class='close text-right'>&#10227;</th>");
         
         $('.history').replaceWith(closeBtn);
         $(closeBtn).on('click', returnBtn); 
-
-        $(".main-body-item").css("max-height", "0");
-        $(".main-body-item").hide();
 
         if(history.length > 0){
         //loop over the array of objects. generate tr/td for each. 
@@ -207,8 +209,8 @@ $(function() {
                         <td class="screen" colspan="4">${history[i].result}</td>
                 `);
 
-                $('tbody').prepend(historyItem);
-                $('tbody').prepend(historyItemPrev);
+                $('.overlay').prepend(historyItem);
+                $('.overlay').prepend(historyItemPrev);
             };
             //Create delete button at the bottom
                 let deleteBtn = $(`
@@ -217,16 +219,15 @@ $(function() {
                         </tr>
                     `);
                 
-                $('tbody').append(deleteBtn);
+                $('.overlay').append(deleteBtn);
                 $(deleteBtn).on('click', deleteHistory);
         } else {
             let noHistory = $("<tr class='temp-history'>");
             noHistory.html(`
                     <td class="no-history" colspan="4">There's no history yet</td>
             `);
-            $('tbody').append(noHistory);
+            $('.overlay').append(noHistory);
         }
-         
 
         renderScreen();
     };
@@ -246,8 +247,9 @@ $(function() {
         $(".temp-history").remove();
         $(".delete").remove();
         $(".main-body-item").show();
-        // $("#originalTBody").show();
-
+        // $('table').removeClass('scroll');
+        $('.head-history').removeClass('thead-history');
+        $('.overlay').removeClass('overlay-active');
 
         let history = $('<th class="history">&#10227;</th>');
         $('.close').replaceWith(history);

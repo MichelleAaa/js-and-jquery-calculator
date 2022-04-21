@@ -16,32 +16,21 @@
 <body>
 
 <div class="main-wrapper">
-    <table class="table">
-        <thead class="">
-            <tr>
-                <th colspan="3">Standard Calculator</th>
+    <table class="table head-history" cellspacing='3' cellpadding='1'>
+        <thead>
+            <tr class="head-history" width="318.35px">
+                <th colspan="3.5">Standard Calculator</th>
                 <th class="history">&#10227;</th>
-            <!-- </tr>
-            <tr> -->
-                <!-- <th id="prev-screen" colspan="4"></th> -->
-            <!-- </tr>
-            <tr> -->
-                <!-- <th id="screen" colspan="4"></th> -->
             </tr>
             <tr>
-                <td id="prev-screen" colspan="4"></td>
+                <td id="prev-screen" colspan="4" class="prev-screen head-history"></td>
             </tr>
             <tr>
-                <td id="screen" colspan="4"></td>
+                <td id="screen" colspan="4" class="screen head-history"></td>
             </tr>
         </thead>
-        <tbody id="originalTBody">
-            <!-- <tr>
-                <td id="prev-screen" colspan="4"></td>
-            </tr>
-            <tr>
-                <td id="screen" colspan="4"></td>
-            </tr> -->
+        
+        <tbody id="originalTBody" class="tbody-container">
             <tr>
                 <td class="main-body-item" data-id="percentage">&percnt;</td>
                 <td class="main-body-item" data-id="CE">CE</td>
@@ -78,7 +67,10 @@
                 <td class="main-body-item" data-id=".">.</td>
                 <td class="main-body-item" data-id="=">=</td>
             </tr>
+            <tbody class="overlay">
+            </tbody>
         </tbody>
+
     </table>
 </div>
 
