@@ -1,29 +1,82 @@
 $(function() {
-    let result = 0;
-    let firstNum = '0';
-    let secondNum = '0';
-    let operation = null;
-    let history = [];
+    let result = 0,
+        firstNum = '0',
+        secondNum = '0',
+        operation = null,
+        history = [];
     
-    $('.number').on('click', function(e){
-        var num = $(this).attr("data-id");
+    renderScreen();
+
+    // Click Events:
+    $('.number').on('click', numberPress);
+    $("td[data-id='.']").on('click', dotPress);
+    $("td[data-id='backspace']").on('click', backspacePress);
+    $('.operation').on('click', operationPress);
+    $("td[data-id='=']").on('click', enterPress);
+
+    // Keypress Events:
+    $(document).keydown(function(event){
+    console.log(event.which);
+    
+        // number keypress:
+        if(event.which == 49 || event.which == 97){
+            numberPress(1);
+        } else if (event.which == 50 || event.which == 98){
+            numberPress(2);
+        } else if (event.which == 51 || event.which == 99){
+            numberPress(3);
+        } else if (event.which == 52 || event.which == 100){
+            numberPress(4);
+        } else if (event.which == 53 || event.which == 101){
+            numberPress(5);
+        } else if (event.which == 54 || event.which == 102){
+            numberPress(6);
+        } else if (event.which == 55 || event.which == 103){
+            numberPress(7);
+        } else if ((event.which == 56 && event.shiftKey == false) || event.which == 104 ){
+            numberPress(8);
+        } else if (event.which == 57 || event.which == 105){
+            numberPress(9);
+        } else if (event.which == 48 || event.which == 96){
+            numberPress(0);
+        } else if (event.which == 46 || event.which == 110){ 
+            // "." Dot Press 
+            dotPress();
+        } else if (event.which == 8){ 
+            // Backspace Press
+            backspacePress();
+        } else if (event.which == 191 || event.which == 111){ 
+            // Operation Presses
+            operationPress("/");
+        } else if (event.which == 187 || event.which == 107){ 
+            operationPress("+");
+        } else if (event.which == 56 || event.which == 106){ 
+            operationPress("*");
+        } else if (event.which == 189 || event.which == 109){ 
+            operationPress("-");
+        } else if (event.which == 13){ 
+            // Enter Press
+            enterPress();
+        }
+    });
+
+    function numberPress(e){
+        var num = typeof e === 'number' ? e.toString() : $(this).attr("data-id");
         
         if(!operation){
         firstNum === '0' ? firstNum = num : firstNum += num;
-        console.log(firstNum);
         } else if (operation && result == 0) {
         secondNum === '0' ? secondNum = num : secondNum += num;
-        } else if(result) {
-            //A pass has already been made on the calculator (there is a result), and the user is entering a new value.
+        } else if(result) { 
             secondNum = '0';
             operation = null;
             result = 0;
             firstNum = num;
         }
         renderScreen();
-    });
+    };
 
-    $("td[data-id='.']").on('click', function(e) {
+    function dotPress() {
         var dot = '.';
         if(firstNum && !operation){
             if(!firstNum.includes(dot)) firstNum += dot; 
@@ -33,7 +86,6 @@ $(function() {
         }
         if(firstNum && operation && secondNum !=='0' && result !== 0){
             if(result && !result.toString().includes(dot)){
-                //A pass has already been made on the calculator (there is a result) and the result doesn't include a .
                 secondNum = '0';
                 operation = null;
                 firstNum = result + ".";
@@ -43,25 +95,24 @@ $(function() {
             } 
         }
         renderScreen();
-    });
+    }
 
-    $("td[data-id='backspace']").on('click', function(e) {
+    function backspacePress() {
         !operation ? firstNum = firstNum.slice(0, -1) : secondNum = secondNum.slice(0, -1);
-        console.log(firstNum, secondNum);
         renderScreen();
-    });
+    };
 
-    $('.operation').on('click', function(e){
-        operation = $(this).attr("data-id");
+    function operationPress(e){
+        operation = typeof e == 'string' ? e : $(this).attr("data-id");
         if(result != 0){
             firstNum = result;
             result = 0;
             secondNum = '0';
         }
         renderScreen();
-    });
+    }
 
-    $("td[data-id='=']").on('click', function(e) {
+    function enterPress() {
         let a = parseFloat(firstNum);
         let b = parseFloat(secondNum);
 
@@ -73,7 +124,7 @@ $(function() {
 
         storeHistory();
         renderScreen();
-    });
+    }
 
     $("td[data-id='CE']").on('click', function(e) {
         if (firstNum && !operation) firstNum = '0';
@@ -93,7 +144,6 @@ $(function() {
 
     $("td[data-id='percentage']").on('click', function(e) {
         if (firstNum && !operation) firstNum = firstNum / 100;
-        console.log(firstNum);
         if (firstNum && operation && secondNum === '0') return;
         if (firstNum && operation && secondNum !== '0' && result === 0) secondNum = secondNum/100;
         if (firstNum && operation && secondNum !== '0' && result !== 0) {
@@ -107,7 +157,6 @@ $(function() {
 
     $("td[data-id='+/-']").on('click', function(e) {
         if (firstNum && !operation) firstNum = firstNum *= -1;
-        console.log(firstNum);
         if (firstNum && operation && secondNum === '0') return;
         if (firstNum && operation && secondNum !== '0' && result === 0) secondNum = secondNum *= -1;
         if (firstNum && operation && secondNum !== '0' && result !== 0) {
@@ -159,23 +208,23 @@ $(function() {
     });
     
     function renderScreen(){
-        if (!firstNum) {
+        if (firstNum == '0') {
             $('#screen').text(`0`);
             $('#prev-screen').text(``);
         }
-        if (firstNum && !operation) {
+        if (firstNum != '0' && !operation) {
             $('#screen').text(`${firstNum}`);
             $('#prev-screen').text(``);
         }
-        if (firstNum && operation) {
+        if (firstNum != '0' && operation) {
             $('#prev-screen').text(`${firstNum} ${operation}`);
             $('#screen').text(`${firstNum}`);
         }
-        if (firstNum && operation && secondNum !== '0') {
+        if (firstNum != '0' && operation && secondNum !== '0') {
             $('#prev-screen').text(`${firstNum} ${operation}`);
             $('#screen').text(`${secondNum}`);
         } 
-        if (firstNum && operation && secondNum && result) {
+        if (firstNum != '0' && operation && secondNum != '0' && result) {
             $('#prev-screen').text(`${firstNum} ${operation} ${secondNum} =`);
             $('#screen').text(`${result}`);
         }
@@ -187,42 +236,38 @@ $(function() {
 
         $('.overlay').addClass('overlay-active');
         $('.head-history').addClass('thead-history');
-        // $('tbody').addClass('scroll');
 
-        //Create close button for the top
         let closeBtn = $("<th class='close text-right'>&#10227;</th>");
         
         $('.history').replaceWith(closeBtn);
         $(closeBtn).on('click', returnBtn); 
 
         if(history.length > 0){
-        //loop over the array of objects. generate tr/td for each. 
-            console.log(history);
+        //Generate tr/td for each element in the history array.
             for (let i = 0; i < history.length; i++){
-                let historyItemPrev = $("<tr class='temp-history'>");
+                let historyItemPrev = $("<tr class='temp-history'></tr>");
                 historyItemPrev.html(`
-                        <td class="prev-screen" colspan="4">${`${history[i].firstNum} ${history[i].operation} ${history[i].secondNum} =`}</td>
+                    <td class="prev-screen" colspan="4">${`${history[i].firstNum} ${history[i].operation} ${history[i].secondNum} =`}</td>
                 `);
 
-                let historyItem = $("<tr class='temp-history'>");
+                let historyItem = $("<tr class='temp-history'></tr>");
                 historyItem.html(`
-                        <td class="screen" colspan="4">${history[i].result}</td>
+                    <td class="screen" colspan="4">${history[i].result}</td>
                 `);
 
                 $('.overlay').prepend(historyItem);
                 $('.overlay').prepend(historyItemPrev);
             };
-            //Create delete button at the bottom
                 let deleteBtn = $(`
                     <tr class='delete'> 
                         <td class="delete-icon" colspan="4">&#128465;</td>
-                        </tr>
+                    </tr>
                     `);
                 
                 $('.overlay').append(deleteBtn);
                 $(deleteBtn).on('click', deleteHistory);
         } else {
-            let noHistory = $("<tr class='temp-history'>");
+            let noHistory = $("<tr class='temp-history'></tr>");
             noHistory.html(`
                     <td class="no-history" colspan="4">There's no history yet</td>
             `);
@@ -233,7 +278,6 @@ $(function() {
     };
 
     function storeHistory(){
-        //create a new object to hold the details
         let prevEvent = {
             firstNum: firstNum,
             secondNum: secondNum,
@@ -247,7 +291,6 @@ $(function() {
         $(".temp-history").remove();
         $(".delete").remove();
         $(".main-body-item").show();
-        // $('table').removeClass('scroll');
         $('.head-history').removeClass('thead-history');
         $('.overlay').removeClass('overlay-active');
 

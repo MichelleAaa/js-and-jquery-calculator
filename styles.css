@@ -16,9 +16,7 @@
     text-align: left;
     padding-left: 2px;
     position: relative;
-    /* height: 472.87px; */
-    /* height: 450px; */
-    height: 485px;
+    height: 100%;
     width: 318.35px;
     overflow: default;
     display: block;
@@ -33,9 +31,6 @@
 
 #screen{
     height: 50px;
-    /* max-width: 250px;
-    overflow: hidden; */
-    /* border: 3px solid rgb(95, 153, 192); */
     font-size: 2rem;
     font-weight: bold;
     padding-right: 9px;
@@ -53,6 +48,22 @@
 .screen, .prev-screen {
     background-color: #202020;
     text-align: right;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.screen:hover,
+.prev-screen:hover {
+    background-color: inherit;
+    color: inherit;
+}
+
+.prev-screen:hover {
+    color: #a6a6a6;
+}
+
+.screen:hover {
+    color: #ffffff;
 }
 
 th {
@@ -60,11 +71,8 @@ th {
 }
 
 td {
-    background-color: rgb(215, 214, 221);
-    color: rgb(81, 81, 95);
     background-color: #323232;
-    color: black;
-    color: white;
+    color: #ffffff;
     border-radius: 3px;
     padding: 3px;
     text-align: center;
@@ -72,9 +80,6 @@ td {
     height: 45px;
     transition: .07s ease-in-out;
     box-shadow: 10 2px 2px #353535;
-    /* box-shadow: 1px 1px 1px 1px #202020; */
-    /* box-shadow: 2px 2px 15px -2px #202020; */
-    /* -webkit-box-shadow: 2px 2px 15px -2px #202020; */
     font-size: 1.3rem;
     font-weight: normal;
 }
@@ -94,13 +99,10 @@ td[data-id='backspace'] {
 
 .number, td[data-id='+/-'], td[data-id='.'] {
     background-color: #3b3b3b;
-    /* font-weight: bold; */
-    /* font-size: .7rem; */
 }
 
 .number {
     font-size: 1rem;
-    /* text-shadow: 0 1px 1px #ffffff; */
 }
 
 .number:hover, td[data-id='+/-']:hover, td[data-id='.']:hover {
@@ -109,7 +111,7 @@ td[data-id='backspace'] {
 
 td:hover {
     background-color: #3c3c3c;
-    color: white;
+    color: #ffffff;
 }
 
 td[data-id='='] {
@@ -155,9 +157,15 @@ thead {
     color: #8f8f8f;
 }
 
+.thead-history:hover {
+    color: inherit;
+    color: #8f8f8f;
+}
+
+
 /* Scrollbar */
 
-/* width */
+/* Width */
 ::-webkit-scrollbar {
     width: 4px;
 }
@@ -174,7 +182,7 @@ thead {
     border-radius: 10px;
 }
 
-/* Handle on hover */
+/* Handle on Hover */
 ::-webkit-scrollbar-thumb:hover {
     background: gray; 
 }
