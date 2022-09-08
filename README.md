@@ -54,5 +54,5 @@ Similar to the calculator found on the Windows operating system, a history scree
  
 ## References
 
--SimpliCode - "Create a Calculator in jQuery | Calculator Using jQuery | jQuery Tutorial | jQuery | SimpliCode" - https://www.youtube.com/watch?v=qF0lECLBMw4
--W3schools - "How To - Image Overlay Slide" - https://www.w3schools.com/howto/howto_css_image_overlay_slide.asp
+- SimpliCode - "Create a Calculator in jQuery | Calculator Using jQuery | jQuery Tutorial | jQuery | SimpliCode" - https://www.youtube.com/watch?v=qF0lECLBMw4 (For guidance on how to structure some of the basic computational logic, however, my application includes a lot more features.)
+- W3schools - "How To - Image Overlay Slide" - https://www.w3schools.com/howto/howto_css_image_overlay_slide.asp
