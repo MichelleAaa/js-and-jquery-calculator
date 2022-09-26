@@ -1,3 +1,15 @@
+:root {
+    --main-lightest: #ffffff;
+    --main-light-1: #a6a6a6;
+    --main-light-2: #8f8f8f;
+    --main-light-3: gray;
+    --main-medium: #323232;
+    --main-darkest: #202020;
+    --font-1: 1rem;
+    --font-2: 1.3rem;
+    --font-3: 2rem;
+}
+
 .main-wrapper {
     display: flex;
     align-items: center;
@@ -6,47 +18,46 @@
     font-size: .9rem;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--main-lightest);
 }
 
 .table {
-    background-color: #202020;
+    background-color: var(--main-darkest);
     border-radius: 4px;
     padding: 1.7px;
-    text-align: left;
     padding-left: 2px;
+    text-align: left;
     position: relative;
     height: 100%;
-    width: 318.35px;
-    overflow: default;
+    overflow: hidden;
     display: block;
 }
 
 .history, .close {
     text-align: right;
     padding: 6px;
-    font-size: 1.3rem;
+    font-size: var(--font-2);
     font-weight: normal;
 }
 
 #screen{
     height: 50px;
-    font-size: 2rem;
+    font-size: var(--font-3);
     font-weight: bold;
     padding-right: 9px;
     vertical-align: top; 
 }
 
 .prev-screen {
-    font-size: 1rem;
+    font-size: var(--font-1);
     padding-right: 14px;
     margin-bottom: 0;
-    color: #a6a6a6;
+    color: var(--main-light-1);
     vertical-align: bottom;
 }
 
 .screen, .prev-screen {
-    background-color: #202020;
+    background-color: var(--main-darkest);
     text-align: right;
     max-width: 300px;
     overflow: hidden;
@@ -59,11 +70,11 @@
 }
 
 .prev-screen:hover {
-    color: #a6a6a6;
+    color: var(--main-light-1);
 }
 
 .screen:hover {
-    color: #ffffff;
+    color: var(--main-lightest);
 }
 
 th {
@@ -71,8 +82,10 @@ th {
 }
 
 td {
-    background-color: #323232;
-    color: #ffffff;
+    font-size: var(--font-2);
+    font-weight: normal;
+    background-color: var(--main-medium);
+    color: var(--main-lightest);
     border-radius: 3px;
     padding: 3px;
     text-align: center;
@@ -80,12 +93,11 @@ td {
     height: 45px;
     transition: .07s ease-in-out;
     box-shadow: 10 2px 2px #353535;
-    font-size: 1.3rem;
-    font-weight: normal;
+
 }
 
 td[data-id='percentage'], td[data-id='CE'], td[data-id='C'], td[data-id='1/x'], td[data-id='squared'], td[data-id='square-root'] {
-    font-size: 1rem;
+    font-size: var(--font-1);
 }
 
 td[data-id='backspace'] {
@@ -102,16 +114,16 @@ td[data-id='backspace'] {
 }
 
 .number {
-    font-size: 1rem;
+    font-size: var(--font-1);
 }
 
 .number:hover, td[data-id='+/-']:hover, td[data-id='.']:hover {
-    background-color: #323232;
+    background-color: var(--main-medium);
 }
 
 td:hover {
     background-color: #3c3c3c;
-    color: #ffffff;
+    color: var(--main-lightest);
 }
 
 td[data-id='='] {
@@ -126,26 +138,26 @@ td[data-id='=']:hover {
 .prev-screen, .screen {
     text-align: right;
     width: 300px;
-    background-color: #202020;
+    background-color: var(--main-darkest);
 }
 
 .prev-screen {
-    color: #a6a6a6;
-    font-size: 1.3rem;
+    color: var(--main-light-1);
+    font-size: var(--font-2);
     vertical-align: bottom;
     background-color: transparent;
 }
 
 .screen {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: var(--font-3);
     vertical-align: top;
 }
 
 .no-history {
     text-align: left;
     width: 353px;
-    background-color: #202020;
+    background-color: var(--main-darkest);
 }
 
 thead {
@@ -154,11 +166,10 @@ thead {
 
 .thead-history {
     background-color: #131212;
-    color: #8f8f8f;
+    color: var(--main-light-2);
 }
 
 .thead-history:hover {
-    color: inherit;
     color: #8f8f8f;
 }
 
@@ -172,7 +183,7 @@ thead {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px var(--main-light-3); 
     border-radius: 10px;
 }
 
@@ -184,7 +195,7 @@ thead {
 
 /* Handle on Hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: gray; 
+    background: var(--main-light-3); 
 }
 
 .delete-icon {
@@ -202,8 +213,7 @@ thead {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #202020;
-    overflow: hidden;
+    background-color: var(--main-darkest);
     width: 100%;
     height: 0;
     transition: .5s ease;

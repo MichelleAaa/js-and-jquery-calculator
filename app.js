@@ -16,8 +16,7 @@ $(function() {
 
     // Keypress Events:
     $(document).keydown(function(event){
-    console.log(event.which);
-    
+
         // number keypress:
         if(event.which == 49 || event.which == 97){
             numberPress(1);
@@ -307,5 +306,4 @@ $(function() {
         $(".delete").remove();
         openHistory();
     }
-
 });
