@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 :root {
     --main-lightest: #ffffff;
     --main-light-1: #a6a6a6;
@@ -11,8 +18,14 @@
 }
 
 .main-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     padding-top: 50px;
     font-size: .9rem;
@@ -33,19 +46,20 @@
     display: block;
 }
 
-.history, .close {
+.history,
+.close {
     text-align: right;
     padding: 6px;
     font-size: var(--font-2);
     font-weight: normal;
 }
 
-#screen{
+#screen {
     height: 50px;
     font-size: var(--font-3);
     font-weight: bold;
     padding-right: 9px;
-    vertical-align: top; 
+    vertical-align: top;
 }
 
 .prev-screen {
@@ -56,7 +70,8 @@
     vertical-align: bottom;
 }
 
-.screen, .prev-screen {
+.screen,
+.prev-screen {
     background-color: var(--main-darkest);
     text-align: right;
     max-width: 300px;
@@ -91,12 +106,20 @@ td {
     text-align: center;
     width: 71px;
     height: 45px;
+    -webkit-transition: .07s ease-in-out;
+    -o-transition: .07s ease-in-out;
     transition: .07s ease-in-out;
+    -webkit-box-shadow: 10 2px 2px #353535;
     box-shadow: 10 2px 2px #353535;
 
 }
 
-td[data-id='percentage'], td[data-id='CE'], td[data-id='C'], td[data-id='1/x'], td[data-id='squared'], td[data-id='square-root'] {
+td[data-id='percentage'],
+td[data-id='CE'],
+td[data-id='C'],
+td[data-id='1/x'],
+td[data-id='squared'],
+td[data-id='square-root'] {
     font-size: var(--font-1);
 }
 
@@ -109,7 +132,9 @@ td[data-id='backspace'] {
     font-weight: normal;
 }
 
-.number, td[data-id='+/-'], td[data-id='.'] {
+.number,
+td[data-id='+/-'],
+td[data-id='.'] {
     background-color: #3b3b3b;
 }
 
@@ -117,7 +142,9 @@ td[data-id='backspace'] {
     font-size: var(--font-1);
 }
 
-.number:hover, td[data-id='+/-']:hover, td[data-id='.']:hover {
+.number:hover,
+td[data-id='+/-']:hover,
+td[data-id='.']:hover {
     background-color: var(--main-medium);
 }
 
@@ -135,7 +162,8 @@ td[data-id='=']:hover {
     background-color: #94b6be;
 }
 
-.prev-screen, .screen {
+.prev-screen,
+.screen {
     text-align: right;
     width: 300px;
     background-color: var(--main-darkest);
@@ -161,6 +189,8 @@ td[data-id='=']:hover {
 }
 
 thead {
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
@@ -183,19 +213,20 @@ thead {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px var(--main-light-3); 
+    -webkit-box-shadow: inset 0 0 5px var(--main-light-3);
+    box-shadow: inset 0 0 5px var(--main-light-3);
     border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(187, 184, 184); 
+    background: rgb(187, 184, 184);
     border-radius: 10px;
 }
 
 /* Handle on Hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--main-light-3); 
+    background: var(--main-light-3);
 }
 
 .delete-icon {
@@ -216,6 +247,8 @@ thead {
     background-color: var(--main-darkest);
     width: 100%;
     height: 0;
+    -webkit-transition: .5s ease;
+    -o-transition: .5s ease;
     transition: .5s ease;
     overflow: auto;
 }
